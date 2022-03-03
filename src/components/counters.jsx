@@ -10,8 +10,24 @@ class counters extends Component {
     ],
   };
 
+  clearIdCounter = (counter) => {
+    counter = counter.map((counter, index) => {
+      counter.id = index + 1;
+      return counter;
+    });
+    return counter;
+  };
+
+  handleAddCounter = () => {
+    let { counters } = this.state;
+    counters = [...counters, { id: counters.length++, value: 0 }];
+    counters = this.clearIdCounter(counters);
+    this.setState({ counters });
+  };
+
   handleDeleteCounter = (id) => {
-    const counters = this.state.counters.filter((f) => f.id !== id);
+    let counters = this.state.counters.filter((f) => f.id !== id);
+    counters = this.clearIdCounter(counters);
     this.setState({ counters });
   };
 
@@ -52,6 +68,12 @@ class counters extends Component {
         <h2>Counters</h2>
         <div className="container">
           <button
+            onClick={() => this.handleAddCounter()}
+            className="btn btn-warning btn-sm m-4"
+          >
+            Add counter
+          </button>
+          <button
             onClick={() => this.handleResetAll()}
             className="btn btn-danger btn-sm m-4"
           >
@@ -63,6 +85,7 @@ class counters extends Component {
               counter={counter}
               onHandleIncrement={this.handleIncrement}
               onHandleDecrement={this.handleDecrement}
+              onHandleAddCounter={this.handleAddCounter}
               onHandleDeleteCounter={this.handleDeleteCounter}
             >
               <p> Counter number is: {counter.id}</p>
