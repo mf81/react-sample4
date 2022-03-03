@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 class Counter extends Component {
-  stateCunterColor = () => {
+  valueCunterColor = () => {
     let colors = "badge m-2 bg-";
     return (colors += this.props.counter.value === 0 ? "danger" : "success");
   };
@@ -10,7 +10,7 @@ class Counter extends Component {
       <React.Fragment>
         <div>{this.props.children}</div>
         <div className="container">
-          <span className={this.stateCunterColor()}>
+          <span className={this.valueCunterColor()}>
             {this.props.counter.value}
           </span>
           <button

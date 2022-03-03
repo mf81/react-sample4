@@ -12,7 +12,7 @@ class counters extends Component {
 
   clearIdCounter = (counter) => {
     counter = counter.map((counter, index) => {
-      counter.id = index + 1;
+      counter.id = ++index;
       return counter;
     });
     return counter;
@@ -85,7 +85,6 @@ class counters extends Component {
               counter={counter}
               onHandleIncrement={this.handleIncrement}
               onHandleDecrement={this.handleDecrement}
-              onHandleAddCounter={this.handleAddCounter}
               onHandleDeleteCounter={this.handleDeleteCounter}
             >
               <p> Counter number is: {counter.id}</p>
